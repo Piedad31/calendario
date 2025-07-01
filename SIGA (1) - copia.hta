@@ -814,11 +814,6 @@
   align-items: center;
   gap:4px;
 }
-//Calendario
-.boton-pequeno { font-size:0.98em; padding:4px 13px; border-radius:7px; border:none; background:#eaf0f7; color:#17406a; font-weight:600; margin:0 2px; cursor:pointer;}
-.boton-pequeno:hover { background:#d0d4da; }
-#calendar table, #calendar td { border:1px solid #d0d4da; }
-
     h1, h2 {
       color: #17406a;
       margin-top: 0;
@@ -1018,6 +1013,8 @@
       </div>
     </div>
   </div>
+<!-- SECCIÓN CALENDARIO VISUAL Y FORMULARIO PARA .HTA CLÁSICO -->
+ACÁ VA LA SECCIÓN DE CALENDARIO
 
 <!--SECCIÓN DE CREAR OFICIOS -->
 <!-- SECCIÓN CREAR OFICIOS MEJORADA -->
@@ -1150,42 +1147,6 @@
     </div>
   </div>
 </div>
- <!-- SECCIÓN CALENDARIO -->
-  <div id="seccion-calendario" style="display:none;">
-  <div class="form-block" style="max-width:900px;">
-    <div class="form-title" style="text-align:left;">Calendario de actividades y plazos</div>
-    <div id="calendar-controls" style="display:flex;align-items:center;gap:12px;margin-bottom:16px;">
-      <button class="boton-pequeno" onclick="cambiarMes(-1)">&#8678; Mes anterior</button>
-      <span id="calendar-mes-anio" style="font-weight:700;font-size:1.1em;color:#17406a;"></span>
-      <button class="boton-pequeno" onclick="cambiarMes(1)">Mes siguiente &#8680;</button>
-      <button class="boton-pequeno" onclick="mostrarModalEvento()">+ Agregar actividad</button>
-    </div>
-    <div id="calendar" style="overflow-x:auto;"></div>
-    <!-- Modal para agregar evento -->
-<div id="modal-evento" style="display:none;position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:999;background:rgba(0,0,0,0.16);justify-content:center;align-items:center;">
-  <div style="background:#fff;padding:28px 26px;border-radius:12px;box-shadow:0 3px 16px #17406a35;min-width:340px;max-width:92vw;">
-    <div style="font-size:1.13em;font-weight:700;color:#17406a;margin-bottom:9px;">Agregar actividad</div>
-    <form onsubmit="guardarEvento();return false;">
-      <div style="margin-bottom:8px;">
-        <label style="font-weight:600;color:#17406a;">Fecha</label>
-        <input id="evento-fecha" type="text" required readonly style="width:100%;padding:7px 10px;border-radius:6px;border:1px solid #b7ccee;" onclick="mostrarCalendario();">
-      </div>
-      <div style="margin-bottom:8px;">
-        <label style="font-weight:600;color:#17406a;">Título</label>
-        <input id="evento-titulo" type="text" required placeholder="Ej: Audiencia, entrega, vencimiento..." style="width:100%;padding:7px 10px;border-radius:6px;border:1px solid #b7ccee;">
-      </div>
-      <div style="margin-bottom:8px;">
-        <label style="font-weight:600;color:#17406a;">Descripción</label>
-        <textarea id="evento-desc" rows="2" style="width:100%;padding:7px 10px;border-radius:6px;border:1px solid #b7ccee;"></textarea>
-      </div>
-      <div style="text-align:right;">
-        <button type="button" class="boton-secundario" onclick="cerrarModalEvento()">Cancelar</button>
-        <button type="submit" class="boton" style="margin-left:8px;">Guardar</button>
-      </div>
-    </form>
-    <!-- Aquí se inyectará el calendario -->
-    <div id="calendario-popup" style="position:absolute;z-index:1001;display:none;"></div>
-  </div>
     </section>
   </div>
 </div>
@@ -1290,18 +1251,6 @@ function mostrarSeccion(seccion) {
   if (seccion === "crear-oficios") {
     cargarFormatosOficios();
     setTimeout(actualizarNotaCasoOficio, 100);
-  }
-
-  // Si se selecciona "calendario", recarga los eventos y renderiza el calendario
-  if (seccion === "calendario") {
-    if (window.localStorage && localStorage.getItem('eventosCalendario')) {
-      try {
-        eventosCalendario = JSON.parse(localStorage.getItem('eventosCalendario'));
-      } catch (e) {
-        eventosCalendario = [];
-      }
-    }
-    renderizarCalendario();
   }
 }
   function mostrarCrearPaso(tipo) {
@@ -3024,135 +2973,7 @@ function abrirWordArchivo(ruta) {
 }
 
 //Calendario
-var fechaActual = new Date();
-var eventosCalendario = [];
-if(window.localStorage && localStorage.getItem('eventosCalendario')) {
-  try { eventosCalendario = JSON.parse(localStorage.getItem('eventosCalendario')); } catch(e) {}
-}
 
-function pad2(n) { return n<10 ? '0'+n : ''+n; }
-
-function renderizarCalendario() {
-  var mes = fechaActual.getMonth();
-  var anio = fechaActual.getFullYear();
-  var diasMes = new Date(anio, mes+1, 0).getDate();
-  var primerDia = new Date(anio, mes, 1).getDay();
-  var nombresMeses = ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
-  document.getElementById("calendar-mes-anio").innerText = nombresMeses[mes]+' '+anio;
-  var html = '<table style="width:100%;border-collapse:collapse;background:#f5f7fa;">';
-  html += '<tr style="background:#17406a;color:#fff;text-align:center;font-weight:600;"><td>Lun</td><td>Mar</td><td>Mié</td><td>Jue</td><td>Vie</td><td>Sáb</td><td>Dom</td></tr><tr>';
-  var diaSemana = (primerDia === 0 ? 6 : primerDia - 1);
-  for(var i=0;i<diaSemana;i++) html += '<td></td>';
-  for(var d=1;d<=diasMes;d++) {
-    var fechaStr = anio + '-' + pad2(mes+1) + '-' + pad2(d);
-    var eventosDia = [];
-    for(var ev=0;ev<eventosCalendario.length;ev++){
-      if(eventosCalendario[ev].fecha === fechaStr) eventosDia.push(eventosCalendario[ev]);
-    }
-    html += '<td style="vertical-align:top;padding:5px 4px;height:70px;position:relative;">';
-    html += '<div style="font-weight:700;color:#17406a;">'+d+'</div>';
-    for(var e=0;e<eventosDia.length;e++){
-      html += '<div style="background:#eaf0f7;border-left:3px solid #17406a;margin:2px 0 0 0;padding:3px 6px;border-radius:5px;font-size:0.97em;cursor:pointer;" title="'+(eventosDia[e].desc||'')+'" onclick="alert(\''+eventosDia[e].titulo+'\\n'+(eventosDia[e].desc||'')+'\')">';
-      html += '&#128197; '+eventosDia[e].titulo+'</div>';
-    }
-    html += '</td>';
-    if((diaSemana+d)%7===0 && d<diasMes) html+='</tr><tr>';
-  }
-  var celdasFinal = (diaSemana+diasMes)%7;
-  if(celdasFinal>0 && celdasFinal<7) for(var j=0;j<7-celdasFinal;j++) html+='<td></td>';
-  html += '</tr></table>';
-  document.getElementById('calendar').innerHTML = html;
-}
-
-function cambiarMes(delta) {
-  fechaActual.setMonth(fechaActual.getMonth() + delta);
-  renderizarCalendario();
-}
-
-function pad2(n) { return n<10 ? '0'+n : ''+n; }
-
-// Inicializa el datepicker cuando se abra el modal (solo una vez)
-var datepickerIniciado = false;
-function mostrarModalEvento() {
-  document.getElementById('evento-fecha').value = '';
-  document.getElementById('evento-titulo').value = '';
-  document.getElementById('evento-desc').value = '';
-  document.getElementById('modal-evento').style.display = 'block';
-  if (!datepickerIniciado) {
-    datepicker('#evento-fecha', {
-     formatter: function(input, date, instance) {
-        const value = date.getFullYear() + '-' + pad2(date.getMonth() + 1) + '-' + pad2(date.getDate());
-        input.value = value;
-      },
-      customDays: ['Dom','Lun','Mar','Mié','Jue','Vie','Sáb'],
-      customMonths: ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre']
-    });
-    datepickerIniciado = true;
-  }
-}
-
-function cerrarModalEvento() {
-  document.getElementById('modal-evento').style.display = 'none';
-}
-
-function guardarEvento() {
-  var fecha = document.getElementById('evento-fecha').value;
-  var titulo = document.getElementById('evento-titulo').value;
-  var desc = document.getElementById('evento-desc').value;
-  // Validar formato YYYY-MM-DD
-  if(!/^\d{4}-\d{2}-\d{2}$/.test(fecha)) {
-    alert("Selecciona la fecha usando el selector de calendario.");
-    return;
-  }
-  if(!fecha || !titulo) {
-    alert("Debes ingresar fecha y título");
-    return;
-  }
-  // Asegúrate de que eventosCalendario está declarado de forma global en tu JS principal
-  eventosCalendario.push({fecha:fecha, titulo:titulo, desc:desc});
-  if(window.localStorage) localStorage.setItem('eventosCalendario', JSON.stringify(eventosCalendario));
-  cerrarModalEvento();
-  renderizarCalendario();
-}
-
-function mostrarCalendario() {
-  var popup = document.getElementById('calendario-popup');
-  // Limpia
-  popup.innerHTML = '';
-  // Obtiene fecha actual
-  var hoy = new Date();
-  var anio = hoy.getFullYear();
-  var mes = hoy.getMonth();
-  // Genera el calendario
-  var html = '<table style="background:#f7f9fb;border:1px solid #b7ccee;border-radius:7px;font-size:14px;box-shadow:0 3px 8px #aaa;"><tr><td colspan="7" style="text-align:center;"><b>'+nombreMes(mes)+' '+anio+'</b></td></tr>';
-  html += '<tr style="color:#17406a;"><td>Lu</td><td>Ma</td><td>Mi</td><td>Ju</td><td>Vi</td><td>Sa</td><td>Do</td></tr><tr>';
-  var primerDia = new Date(anio, mes, 1).getDay(); primerDia = (primerDia===0?6:primerDia-1);
-  for(var i=0;i<primerDia;i++) html += '<td></td>';
-  var diasEnMes = new Date(anio, mes+1, 0).getDate();
-  for(var d=1;d<=diasEnMes;d++) {
-    var diaFecha = anio+'-'+pad2(mes+1)+'-'+pad2(d);
-    html += '<td style="text-align:center;cursor:pointer;color:#17406a;padding:2px 4px;border-radius:4px;" onclick="seleccionarFecha(\''+diaFecha+'\')">'+d+'</td>';
-    if((primerDia+d)%7===0 && d<diasEnMes) html+='</tr><tr>';
-  }
-  html += '</tr></table>';
-  popup.innerHTML = html;
-  popup.style.display = 'block';
-  // Cierra si se hace clic fuera
-  setTimeout(function() {
-    document.onclick = function(e) {
-      if(!e.target || e.target.id!='evento-fecha') popup.style.display = 'none';
-      document.onclick = null;
-    }
-  }, 100);
-}
-function nombreMes(mes) {
-  var meses = ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
-  return meses[mes]||'';
-}
-function seleccionarFecha(fecha) {
-  document.getElementById('evento-fecha').value = fecha;
-  document.getElementById('calendario-popup').style.display = 'none';
-}
 
 // Utilidad
   function abrirRuta(ruta) {
