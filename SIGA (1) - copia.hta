@@ -814,6 +814,220 @@
   align-items: center;
   gap:4px;
 }
+
+//Calendario
+.calendario-wrap {
+  margin: 30px auto 0 auto;
+  max-width: 900px;
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 4px 18px #17406a13;
+  border: 1.5px solid #d0d4da;
+  padding: 28px 26px 26px 26px;
+}
+.calendario-titulo {
+  text-align: center;
+  font-weight: 800;
+  font-size: 1.25em;
+  letter-spacing: .5px;
+  color: #17406a;
+  margin-bottom: 18px;
+}
+#lista-eventos-calendario {
+  margin-top: 0;
+}
+#tabla-calendario th,
+#tabla-calendario td {
+  text-align: center;
+  font-size: 1.09em;
+  font-family: 'Segoe UI', Arial, sans-serif;
+}
+#tabla-calendario th {
+  background: #eaf0f7;
+  color: #17406a;
+  font-weight: 700;
+  padding: 7px 0 7px 0;
+}
+#tabla-calendario td {
+  padding: 6px 2px;
+  min-width: 90px;
+  height: 70px;
+  vertical-align: top;
+  position: relative;
+  transition: background 0.15s, box-shadow 0.12s;
+  cursor: pointer;
+}
+#tabla-calendario td:not([style*="background:#f5f7fa"]) {
+  background: #fff;
+}
+#tabla-calendario td:hover {
+  background: #f0f4fa !important;
+  box-shadow: 0 2px 8px #17406a18;
+  z-index: 2;
+}
+.cal-evento {
+  background: #1976d2;
+  color: #fff;
+  border-radius: 6px;
+  padding: 3px 7px 3px 7px;
+  margin: 2px 0 2px 0;
+  font-size: 0.98em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  justify-content: space-between;
+  box-shadow: 0 2px 8px #17406a20;
+}
+.cal-evento-hora {
+  font-weight: 600;
+  font-size: 0.95em;
+  margin-right: 4px;
+  color: #ffe082;
+  letter-spacing: 0.2px;
+}
+.cal-evento-titulo {
+  flex: 1 1 auto;
+  text-align: left;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.cal-evento-borrar {
+  color: #ffbdbd;
+  font-weight: bold;
+  margin-left: 8px;
+  cursor: pointer;
+  font-size: 1em;
+  transition: color 0.13s;
+}
+.cal-evento-borrar:hover {
+  color: #d32f2f;
+}
+.cal-dia-num {
+  font-weight: 600;
+  font-size: 1.13em;
+  color: #17406a;
+  margin-bottom: 2px;
+  margin-top: 2px;
+}
+.cal-dia-hoy {
+  background: #fffae6 !important;
+  border: 2px solid #ffb300 !important;
+  border-radius: 7px;
+}
+.cal-dia-otro {
+  background: #f5f7fa !important;
+  color: #b0b0b0 !important;
+}
+.cal-dialog-bg {
+  display: none;
+  position: fixed;
+  top: 0; left: 0; width: 100vw; height: 100vh;
+  background: #0004;
+  z-index: 1000;
+  align-items: center;
+  justify-content: center;
+}
+.cal-dialog {
+  background: #fff;
+  padding: 26px 25px 18px 25px;
+  border-radius: 16px;
+  box-shadow: 0 4px 32px #17406a33;
+  min-width: 320px;
+  max-width: 96vw;
+  display: flex;
+  flex-direction: column;
+}
+.cal-dialog-titulo {
+  font-weight: 700;
+  font-size: 1.07em;
+  color: #17406a;
+  margin-bottom: 14px;
+  text-align: center;
+}
+.cal-dialog-form-row {
+  display: flex;
+  gap: 7px;
+  margin-bottom: 7px;
+}
+.cal-dialog input[type="text"] {
+  flex: 2;
+  padding: 7px 8px;
+  font-size: 1em;
+  border-radius: 6px;
+  border: 1px solid #b7ccee;
+}
+.cal-dialog select {
+  flex: 1;
+  padding: 7px 8px;
+  font-size: 1em;
+  border-radius: 6px;
+  border: 1px solid #b7ccee;
+}
+.cal-dialog .boton {
+  padding: 8px 18px;
+  font-size: 1em;
+  border-radius: 7px;
+  margin-left: 4px;
+  margin-right: 4px;
+  margin-top: 0;
+}
+.cal-dialog-footer {
+  text-align: right;
+  margin-top: 9px;
+}
+.boton {
+  background: #17406a;
+  color: #fff;
+  border: none;
+  border-radius: 7px;
+  padding: 9px 22px;
+  font-size: 1em;
+  cursor: pointer;
+  font-weight: 600;
+  letter-spacing: .1px;
+  transition: background 0.13s, box-shadow 0.09s, transform 0.07s;
+}
+.boton:hover {
+  background: #205085;
+}
+.boton-pequeno {
+  font-size: 0.92em !important;
+  padding: 5px 17px !important;
+  margin-left: 0 !important;
+}
+.calendario-alerta-recordatorio {
+  background: #fffbe7;
+  color: #9a6b00;
+  border: 1.5px solid #ffe082;
+  border-radius: 10px;
+  margin-bottom: 17px;
+  padding: 16px 19px 12px 19px;
+  font-size: 1.12em;
+  max-width: 650px;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  box-shadow: 0 2px 12px #ffe08244;
+}
+.calendario-alerta-recordatorio-close {
+  position: absolute;
+  right: 13px;
+  top: 9px;
+  font-size: 1.35em;
+  color: #e6a900;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  line-height: 1;
+  padding: 0;
+}
+.calendario-alerta-recordatorio-close:hover {
+  color: #b08700;
+}
     h1, h2 {
       color: #17406a;
       margin-top: 0;
@@ -1013,9 +1227,33 @@
       </div>
     </div>
   </div>
-<!-- SECCIÓN CALENDARIO VISUAL Y FORMULARIO PARA .HTA CLÁSICO -->
-ACÁ VA LA SECCIÓN DE CALENDARIO
-
+<!-- SECCIÓN CALENDARIO INSTITUCIONAL LIMPIA -->
+<div id="seccion-calendario" style="display:none;">
+<div class="calendario-wrap">
+  <div class="calendario-titulo">CALENDARIO INSTITUCIONAL</div>
+  <div id="calendario-alerta-recordatorios"></div>
+  <div id="lista-eventos-calendario"></div>
+</div>
+</div>
+<!-- Notificaciones: Campana flotante alineada a la izquierda del avatar de usuario -->
+<div id="widget-recordatorios-btn"
+     style="position:fixed;top:5px;right:250px;z-index:5000;cursor:pointer;display:none;">
+  <div id="widget-icono"
+       style="background:#fffbe6;border:2px solid #f6c700;color:#17406a;border-radius:50%;width:36px;height:36px;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 10px #aaa;position:relative;">
+    <!-- Campana SVG compatible HTA -->
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+      <path d="M12 22c1.3 0 2.402-1.025 2.495-2.308L14.5 19h-5l.005.692A2.495 2.495 0 0012 22zm6-6V11a6 6 0 10-12 0v5l-1.293 1.293A1 1 0 006 19h12a1 1 0 00.707-1.707L18 16z" fill="#e6a800"/>
+    </svg>
+    <span id="widget-badge"
+          style="position:absolute;top:-4px;right:-3px;background:#d90000;color:#fff;border-radius:10px;font-size:0.6em;padding:0 6px;display:none;border:2px solid #fff;">1</span>
+  </div>
+</div>
+<div id="widget-recordatorios-panel"
+     style="display:none;position:fixed;top:60px;right:160px;z-index:5001;background:#fffbe6;border:2px solid #f6c700;border-radius:13px;box-shadow:0 4px 24px #0002;max-width:340px;padding:18px 18px 12px 18px;">
+  <button onclick="document.getElementById('widget-recordatorios-panel').style.display='none'"
+          style="position:absolute;top:4px;right:8px;background:none;border:none;font-size:1.3em;cursor:pointer;color:#b88b06;">×</button>
+  <div id="widget-recordatorios-contenido"></div>
+</div>
 <!--SECCIÓN DE CREAR OFICIOS -->
 <!-- SECCIÓN CREAR OFICIOS MEJORADA -->
 <div id="seccion-crear-oficios" style="display:none;">
@@ -2429,6 +2667,7 @@ function renderPanelSubcasosPaginado() {
 function inicializarDashboard() {
   cargarAniosDisponibles();
   actualizarTarjetasEstadisticas();
+  inicializarCalendario();
 }
 
 // Cargar años disponibles analizando carpetas del escritorio
@@ -2973,8 +3212,352 @@ function abrirWordArchivo(ruta) {
 }
 
 //Calendario
+// =================== FECHA LOCAL SEGURA ===================
+function getFechaLocalISO(date) {
+  var yyyy = date.getFullYear();
+  var mm = date.getMonth() + 1;
+  var dd = date.getDate();
+  if (mm < 10) mm = "0" + mm;
+  if (dd < 10) dd = "0" + dd;
+  return yyyy + "-" + mm + "-" + dd;
+}
 
+// =================== PARSE FECHA ISO COMO LOCAL ===================
+function parseFechaISOComoLocal(fechaISO) {
+  // fechaISO = "2025-07-02"
+  var partes = fechaISO.split("-");
+  return new Date(
+    parseInt(partes[0], 10),
+    parseInt(partes[1], 10) - 1,
+    parseInt(partes[2], 10)
+  );
+}
 
+// =================== VARIABLES GLOBALES ===================
+var RUTA_EVENTOS = "eventos_calendario.json";
+var eventosCalendario = [];
+var mesVista = null;
+var anioVista = null;
+
+// =================== LECTURA Y ESCRITURA DE ARCHIVO ===================
+function leerEventosCalendario() {
+  try {
+    var fso = new ActiveXObject("Scripting.FileSystemObject");
+    if (fso.FileExists(RUTA_EVENTOS)) {
+      var archivo = fso.OpenTextFile(RUTA_EVENTOS, 1, false);
+      var contenido = archivo.ReadAll();
+      archivo.Close();
+      if (contenido.trim() !== "") {
+        eventosCalendario = JSON.parse(contenido);
+      } else {
+        eventosCalendario = [];
+      }
+    } else {
+      eventosCalendario = [];
+    }
+  } catch (e) {
+    alert("Error leyendo archivo de eventos: " + e.message);
+    eventosCalendario = [];
+  }
+}
+
+function guardarEventosCalendario() {
+  try {
+    var fso = new ActiveXObject("Scripting.FileSystemObject");
+    var archivo = fso.OpenTextFile(RUTA_EVENTOS, 2, true);
+    archivo.Write(JSON.stringify(eventosCalendario));
+    archivo.Close();
+  } catch (e) {
+    alert("Error guardando archivo de eventos: " + e.message);
+  }
+}
+
+// =================== RECORDATORIO: Buscar eventos próximos ===================
+function mostrarRecordatoriosCalendario() {
+  var btn = document.getElementById('widget-recordatorios-btn');
+  var panel = document.getElementById('widget-recordatorios-panel');
+  var contenido = document.getElementById('widget-recordatorios-contenido');
+  var badge = document.getElementById('widget-badge');
+  if (!btn || !panel || !contenido || !badge) return;
+
+  // Lógica de recordatorios igual que antes
+  var ahora = new Date();
+  var hoyISO = getFechaLocalISO(ahora);
+  var mananaISO = getFechaLocalISO((function(d){ var f=new Date(d); f.setDate(f.getDate()+1); return f; })(ahora));
+
+  var recordatoriosHoy = [];
+  var recordatoriosManana = [];
+
+  for (var i=0; i<eventosCalendario.length; i++) {
+    var e = eventosCalendario[i];
+
+    if (!e.hora) {
+      if (e.fecha === hoyISO) recordatoriosHoy.push({evento: e, mensaje: "Sin hora"});
+      else if (e.fecha === mananaISO) recordatoriosManana.push({evento: e, mensaje: "Sin hora"});
+      continue;
+    }
+
+    var dt = eventoStringAFecha(e.fecha, e.hora);
+    if (!dt) continue;
+    var fechaEvento = getFechaLocalISO(dt);
+
+    // HOY
+    if (fechaEvento === hoyISO) {
+      var diffMin = (dt - ahora) / (1000*60);
+      if (diffMin >= 0 && diffMin <= 300)
+        recordatoriosHoy.push({evento: e, mensaje: "En " + Math.round(diffMin) + " minutos"});
+      if (diffMin < 0 && diffMin > -10)
+        recordatoriosHoy.push({evento: e, mensaje: "Ya inició hace poco"});
+    }
+    // MAÑANA
+    else if (fechaEvento === mananaISO) {
+      var hora = e.hora || "";
+      recordatoriosManana.push({evento: e, mensaje: (hora ? "A las " + hora : "Sin hora")});
+    }
+  }
+
+  // Mostrar u ocultar el widget/campana
+  var total = recordatoriosHoy.length + recordatoriosManana.length;
+  if (total > 0) {
+    btn.style.display = "";
+    badge.style.display = total > 0 ? "" : "none";
+    badge.innerText = total;
+  } else {
+    btn.style.display = "none";
+    panel.style.display = "none";
+    return;
+  }
+
+  // Prepara el contenido del panel
+  var html = "";
+  if (recordatoriosHoy.length > 0) {
+    html += "<b>¡Tienes eventos próximos hoy!</b><ul style='margin-top:7px;'>";
+    for (var k=0; k<recordatoriosHoy.length; k++) {
+      var ev = recordatoriosHoy[k].evento;
+      var fecha = ev.fecha.split('-');
+      var textoFecha = fecha[2] + " de " +
+        ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'][parseInt(fecha[1],10)-1] +
+        " de " + fecha[0];
+      html += "<li style='margin-bottom:2px;'>" +
+        ev.titulo + " — <span style='color:#9a6b00;'>" +
+        textoFecha + (ev.hora ? " a las <b>" + ev.hora + "</b>" : "") +
+        "</span> <b>(" + recordatoriosHoy[k].mensaje + ")</b></li>";
+    }
+    html += "</ul>";
+  }
+  if (recordatoriosManana.length > 0) {
+    html += "<b style='display:block;margin-top:10px;'>Y también tienes eventos mañana:</b><ul style='margin-top:7px;'>";
+    for (var k=0; k<recordatoriosManana.length; k++) {
+      var ev = recordatoriosManana[k].evento;
+      var fecha = ev.fecha.split('-');
+      var textoFecha = fecha[2] + " de " +
+        ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'][parseInt(fecha[1],10)-1] +
+        " de " + fecha[0];
+      html += "<li style='margin-bottom:2px;'>" +
+        ev.titulo + " — <span style='color:#9a6b00;'>" +
+        textoFecha + (ev.hora ? " a las <b>" + ev.hora + "</b>" : "") +
+        "</span> <b>(" + recordatoriosManana[k].mensaje + ")</b></li>";
+    }
+    html += "</ul>";
+  }
+  contenido.innerHTML = html;
+
+  // Click muestra/oculta el panel
+  btn.onclick = function() {
+    panel.style.display = (panel.style.display === "none" || panel.style.display === "") ? "block" : "none";
+  };
+}
+
+// =================== PARSE HORA 12H ===================
+function eventoStringAFecha(fechaISO, horaStr) {
+  // Ultra-tolerante: "1:45 p.m.", "1:45 p. m.", "1:45pm", "1:45 PM", etc.
+  if (!fechaISO || !horaStr) return null;
+  horaStr = horaStr.trim().toLowerCase();
+  // Normaliza: elimina todos espacios y puntos
+  horaStr = horaStr.replace(/[\s\.]/g, '');
+  // Busca am o pm
+  var ampm = "";
+  if (horaStr.substr(-2) === "am") ampm = "am";
+  if (horaStr.substr(-2) === "pm") ampm = "pm";
+  horaStr = horaStr.replace(/am|pm/, "");
+  var partes = horaStr.split(":");
+  if (partes.length !== 2) return null;
+  var hora = parseInt(partes[0],10);
+  var min = parseInt(partes[1],10);
+  if (isNaN(hora) || isNaN(min)) return null;
+  if (ampm === "pm" && hora < 12) hora += 12;
+  if (ampm === "am" && hora === 12) hora = 0;
+  // Usar SIEMPRE fecha local:
+  var fecha = parseFechaISOComoLocal(fechaISO);
+  fecha.setHours(hora);
+  fecha.setMinutes(min);
+  fecha.setSeconds(0);
+  return fecha;
+}
+
+// =================== SUMAR DÍAS FECHA LOCAL ===================
+function sumarDiasAISO(fechaISO, dias) {
+  var d = parseFechaISOComoLocal(fechaISO);
+  d.setDate(d.getDate() + dias);
+  return getFechaLocalISO(d);
+}
+
+// =================== CALENDARIO VISUAL (USANDO FECHAS LOCALES) ===================
+function renderMesCalendario() {
+  var cont = document.getElementById('lista-eventos-calendario');
+  var meses = ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
+  var hoy = getFechaLocalISO(new Date());
+
+  var now = new Date();
+  var anio = (anioVista !== null ? anioVista : now.getFullYear());
+  var mes = (mesVista !== null ? mesVista : now.getMonth());
+  var firstDay = new Date(anio, mes, 1);
+  var lastDay = new Date(anio, mes + 1, 0);
+
+  var html = '<div style="text-align:center;font-size:1.17em;font-weight:600;color:#17406a;margin-bottom:8px;">'
+    + meses[mes] + ' ' + anio + '</div>';
+  html += '<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;">' +
+    '<button class="boton-pequeno" onclick="cambiarMesCalendario(-1)">&lt;</button>' +
+    '<div></div>' +
+    '<button class="boton-pequeno" onclick="cambiarMesCalendario(1)">&gt;</button>' +
+    '</div>';
+
+  html += '<table id="tabla-calendario" style="width:100%;border-collapse:collapse;box-shadow:0 2px 12px #b7ccee22;border-radius:12px;overflow:hidden;">';
+  html += '<thead><tr>' +
+    '<th>Lun</th><th>Mar</th><th>Mié</th><th>Jue</th><th>Vie</th><th>Sáb</th><th>Dom</th></tr></thead><tbody>';
+
+  var diaSemana = (firstDay.getDay() + 6) % 7; // Lunes=0
+  var dia = 1 - diaSemana;
+  for (var fila=0; fila<6; fila++) {
+    html += '<tr>';
+    for (var col=0; col<7; col++, dia++) {
+      var fecha = new Date(anio, mes, dia);
+      var fechaISO = getFechaLocalISO(fecha);
+      var esHoy = (fechaISO === hoy);
+      var esMesActual = (fecha.getMonth() === mes);
+      var eventosDia = [];
+      for (var e=0; e<eventosCalendario.length; e++) {
+        if (eventosCalendario[e].fecha === fechaISO) eventosDia.push(eventosCalendario[e]);
+      }
+      html += '<td class="' + (esMesActual ? '' : 'cal-dia-otro ') + (esHoy ? 'cal-dia-hoy' : '') + '" onclick="mostrarDialogoEvento(\'' + fechaISO + '\')">';
+      if (esMesActual) {
+        html += '<div class="cal-dia-num">' + fecha.getDate() + '</div>';
+      } else {
+        html += '<div style="font-weight:400;font-size:1.08em;opacity:0.4;margin-bottom:2px;">' + fecha.getDate() + '</div>';
+      }
+      for (var j=0; j<eventosDia.length; j++) {
+        html += '<div class="cal-evento">'
+          + (eventosDia[j].hora ? '<span class="cal-evento-hora">' + eventosDia[j].hora + '</span>' : '')
+          + '<span class="cal-evento-titulo">' + eventosDia[j].titulo + '</span>'
+          + '<span class="cal-evento-borrar" title="Borrar" onclick="event.stopPropagation();borrarEventoCalendario(' + buscarIndiceEvento(eventosDia[j].fecha, eventosDia[j].titulo, eventosDia[j].hora) + ');">&times;</span>'
+          + '</div>';
+      }
+      html += '</td>';
+    }
+    html += '</tr>';
+    if (dia > lastDay.getDate()) break;
+  }
+  html += '</tbody></table>';
+
+  html += '<div id="dialogo-agregar-evento" class="cal-dialog-bg">'
+    + '<form class="cal-dialog" onsubmit="insertarEventoDesdeDialogo();return false;">'
+    + '<div class="cal-dialog-titulo" id="titulo-dia-evento"></div>'
+    + '<div class="cal-dialog-form-row">'
+    + '<input type="hidden" id="input-dia-dialogo">'
+    + '<input type="text" id="input-titulo-dialogo" placeholder="Título del evento" required>'
+    + '<select id="input-hora12-dialogo" style="max-width:88px;">'
+    + '<option value="">Hora</option>';
+  for(var i=1;i<=12;i++){html+='<option value="'+i+'">'+i+'</option>';}
+  html += '</select>'
+    + '<select id="input-min-dialogo" style="max-width:74px;">'
+    + '<option value="00">00</option><option value="15">15</option><option value="30">30</option><option value="45">45</option>'
+    + '</select>'
+    + '<select id="input-ampm-dialogo" style="max-width:60px;"><option value="a.m.">a.m.</option><option value="p.m.">p.m.</option></select>'
+    + '<button class="boton" type="submit">Agregar</button>'
+    + '</div>'
+    + '<div class="cal-dialog-footer"><button class="boton boton-pequeno" type="button" onclick="cerrarDialogoEvento()">Cerrar</button></div>'
+    + '</form></div>';
+
+  cont.innerHTML = html;
+}
+
+// =================== NAVEGACIÓN ENTRE MESES ===================
+function cambiarMesCalendario(delta) {
+  var now = new Date();
+  if (mesVista === null || anioVista === null) {
+    mesVista = now.getMonth();
+    anioVista = now.getFullYear();
+  }
+  mesVista += delta;
+  if (mesVista < 0) { mesVista = 11; anioVista--; }
+  if (mesVista > 11) { mesVista = 0; anioVista++; }
+  renderMesCalendario();
+  mostrarRecordatoriosCalendario();
+}
+
+// =================== DIÁLOGOS Y EVENTOS ===================
+function mostrarDialogoEvento(fechaISO) {
+  var dlg = document.getElementById('dialogo-agregar-evento');
+  document.getElementById('input-dia-dialogo').value = fechaISO;
+  document.getElementById('input-titulo-dialogo').value = "";
+  document.getElementById('input-hora12-dialogo').selectedIndex = 0;
+  document.getElementById('input-min-dialogo').selectedIndex = 0;
+  document.getElementById('input-ampm-dialogo').selectedIndex = 0;
+  var partes = fechaISO.split("-");
+  var meses = ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
+  document.getElementById('titulo-dia-evento').innerHTML = "Agregar evento para el " + partes[2] + " de " + meses[parseInt(partes[1],10)-1] + " de " + partes[0];
+  dlg.style.display = "flex";
+}
+function cerrarDialogoEvento() {
+  document.getElementById('dialogo-agregar-evento').style.display = "none";
+}
+
+function insertarEventoDesdeDialogo() {
+  var fecha = document.getElementById('input-dia-dialogo').value;
+  var titulo = document.getElementById('input-titulo-dialogo').value.trim();
+  var hora12 = document.getElementById('input-hora12-dialogo').value;
+  var min = document.getElementById('input-min-dialogo').value;
+  var ampm = document.getElementById('input-ampm-dialogo').value;
+  var hora = "";
+  if(hora12!=="") {
+    hora = hora12+':'+min+' '+ampm;
+  }
+  if (!fecha || !titulo) return;
+  eventosCalendario.push({ fecha: fecha, titulo: titulo, hora: hora });
+  guardarEventosCalendario();
+  cerrarDialogoEvento();
+  renderMesCalendario();
+  mostrarRecordatoriosCalendario();
+}
+
+function buscarIndiceEvento(fecha, titulo, hora) {
+  for (var i=0; i<eventosCalendario.length; i++) {
+    if (eventosCalendario[i].fecha === fecha && eventosCalendario[i].titulo === titulo && eventosCalendario[i].hora === hora) return i;
+  }
+  for (var i=0; i<eventosCalendario.length; i++) {
+    if (eventosCalendario[i].fecha === fecha && eventosCalendario[i].titulo === titulo) return i;
+  }
+  return -1;
+}
+
+function borrarEventoCalendario(idx) {
+  if (confirm("¿Seguro que deseas borrar este evento?")) {
+    eventosCalendario.splice(idx, 1);
+    guardarEventosCalendario();
+    renderMesCalendario();
+    mostrarRecordatoriosCalendario();
+  }
+}
+
+// =================== INICIALIZACIÓN ===================
+function inicializarCalendario() {
+  leerEventosCalendario();
+  mesVista = null;
+  anioVista = null;
+  renderMesCalendario();
+  mostrarRecordatoriosCalendario();
+  setInterval(mostrarRecordatoriosCalendario, 60000); // Actualiza recordatorios cada minuto
+}
 // Utilidad
   function abrirRuta(ruta) {
     if (fso.FolderExists(ruta)) {
